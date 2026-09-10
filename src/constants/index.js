@@ -12,8 +12,6 @@ const cards = [
     { name: "spades_J", face: "spades", value: 11, isAce: false, imgPath: "/cards/spades_J.png" },
     { name: "spades_Q", face: "spades", value: 12, isAce: false, imgPath: "/cards/spades_Q.png" },
     { name: "spades_K", face: "spades", value: 13, isAce: false, imgPath: "/cards/spades_K.png" },
-    { name: "spades_joker", face: "spades", value: null, isAce: false, imgPath: "/cards/spades_joker.png" },
-    { name: "spades_extra", face: "spades", value: null, isAce: false, imgPath: "/cards/spades_extra.png" },
     { name: "diamonds_A", face: "diamonds", value: 1, isAce: true, imgPath: "/cards/diamonds_A.png" },
     { name: "diamonds_2", face: "diamonds", value: 2, isAce: false, imgPath: "/cards/diamonds_2.png" },
     { name: "diamonds_3", face: "diamonds", value: 3, isAce: false, imgPath: "/cards/diamonds_3.png" },
@@ -27,8 +25,6 @@ const cards = [
     { name: "diamonds_J", face: "diamonds", value: 11, isAce: false, imgPath: "/cards/diamonds_J.png" },
     { name: "diamonds_Q", face: "diamonds", value: 12, isAce: false, imgPath: "/cards/diamonds_Q.png" },
     { name: "diamonds_K", face: "diamonds", value: 13, isAce: false, imgPath: "/cards/diamonds_K.png" },
-    { name: "diamonds_joker", face: "diamonds", value: null, isAce: false, imgPath: "/cards/diamonds_joker.png" },
-    { name: "diamonds_extra", face: "diamonds", value: null, isAce: false, imgPath: "/cards/diamonds_extra.png" },
     { name: "clubs_A", face: "clubs", value: 1, isAce: true, imgPath: "/cards/clubs_A.png" },
     { name: "clubs_2", face: "clubs", value: 2, isAce: false, imgPath: "/cards/clubs_2.png" },
     { name: "clubs_3", face: "clubs", value: 3, isAce: false, imgPath: "/cards/clubs_3.png" },
@@ -42,13 +38,11 @@ const cards = [
     { name: "clubs_J", face: "clubs", value: 11, isAce: false, imgPath: "/cards/clubs_J.png" },
     { name: "clubs_Q", face: "clubs", value: 12, isAce: false, imgPath: "/cards/clubs_Q.png" },
     { name: "clubs_K", face: "clubs", value: 13, isAce: false, imgPath: "/cards/clubs_K.png" },
-    { name: "clubs_joker", face: "clubs", value: null, isAce: false, imgPath: "/cards/clubs_joker.png" },
-    { name: "clubs_extra", face: "clubs", value: null, isAce: false, imgPath: "/cards/clubs_extra.png" },
     { name: "hearts_A", face: "hearts", value: 1, isAce: true, imgPath: "/cards/hearts_A.png" },
     { name: "hearts_2", face: "hearts", value: 2, isAce: false, imgPath: "/cards/hearts_2.png" },
     { name: "hearts_3", face: "hearts", value: 3, isAce: false, imgPath: "/cards/hearts_3.png" },
     { name: "hearts_4", face: "hearts", value: 4, isAce: false, imgPath: "/cards/hearts_4.png" },
-    { name: "hearts_5", face: "hearts", value: 5, isAce: false, imgPath: "/cards/hearts_5.png" },
+    { name: "hearts_5", face: "hearts", value: 5, isAce: false, imgPath: "/cards/hearts_5.png"},
     { name: "hearts_6", face: "hearts", value: 6, isAce: false, imgPath: "/cards/hearts_6.png" },
     { name: "hearts_7", face: "hearts", value: 7, isAce: false, imgPath: "/cards/hearts_7.png" },
     { name: "hearts_8", face: "hearts", value: 8, isAce: false, imgPath: "/cards/hearts_8.png" },
@@ -57,11 +51,38 @@ const cards = [
     { name: "hearts_J", face: "hearts", value: 11, isAce: false, imgPath: "/cards/hearts_J.png" },
     { name: "hearts_Q", face: "hearts", value: 12, isAce: false, imgPath: "/cards/hearts_Q.png" },
     { name: "hearts_K", face: "hearts", value: 13, isAce: false, imgPath: "/cards/hearts_K.png" },
+];
+
+const backCard = "/cards/clubs_extra.png";
+
+const jokers = [
     { name: "hearts_joker", face: "hearts", value: null, isAce: false, imgPath: "/cards/hearts_joker.png" },
     { name: "hearts_extra", face: "hearts", value: null, isAce: false, imgPath: "/cards/hearts_extra.png" },
-];
+    { name: "clubs_joker", face: "clubs", value: null, isAce: false, imgPath: "/cards/clubs_joker.png" },
+    { name: "clubs_extra", face: "clubs", value: null, isAce: false, imgPath: "/cards/clubs_extra.png" },
+    { name: "diamonds_joker", face: "diamonds", value: null, isAce: false, imgPath: "/cards/diamonds_joker.png" },
+    { name: "diamonds_extra", face: "diamonds", value: null, isAce: false, imgPath: "/cards/diamonds_extra.png" },
+    { name: "spades_joker", face: "spades", value: null, isAce: false, imgPath: "/cards/spades_joker.png" },
+    { name: "spades_extra", face: "spades", value: null, isAce: false, imgPath: "/cards/spades_extra.png" },
+]
+
+const navLinks = [
+    { name: "Black Jack", link: "/blackjack" },
+    { name: "Classic Poker", link: "/classic-poker" },
+    { name: "Texas Hold'em", link: "/texas-holdem" },
+    {name: "Tutorial", link: "/tutorial"}
+]
+
+const buttonVariants = {
+    primary: "bg-pink text-black h-16 text-3xl hover:bg-black hover:text-white",
+    secondary: "bg-black text-white hover:bg-pink hover:text-black h-10",
+    danger: "bg-red text-white hover:bg-white hover:text-red",
+}
 
 
 export {
     cards,
+    backCard,
+    navLinks,
+    buttonVariants,
 }
