@@ -121,46 +121,60 @@ const BlackJack = () => {
         setMessage(result)
     }, [botStood, playerStood])
 
-    return (
-        <GameTable
-            botHand={botHand}
-            playerHand={playerHand}
-            playerTurn={playerTurn}
-            hideBotFirstCard={!message}
-            deckCount={deck.length}
-            message={
-                message
-                    ? `${message} | You: ${playerScore} | Bot: ${botScore}`
-                    : playerTurn && botHand.length > 0
-                        ? `You: ${playerScore} | Bot: ${botScore - botHand[0].blackjackValue} + ?`
-                        : !playerStood && botStood
-                            ? `You: ${playerScore} | Bot: ${botScore - botHand[0].blackjackValue} + ?`
-                            : botStood && playerStood
-                                ? `Calculating result...`
-                                : `You: ${playerScore} | Bot thinking...`
-            }
-            controls={
-                <>
-                    {!playerStood && (
-                        <>
-                            <Button className="w-72" variant="primary" onClick={handlePlayerHit}>
-                                Call for more
-                            </Button>
-                            <Button className="w-32" variant="secondary" onClick={handlePlayerStand}>
-                                Stand
-                            </Button>
-                        </>
-                    )}
-                    {message && (
-                        <Button className="w-64" variant="primary" onClick={handleStartGame}>
-                            Start A New Game
+    const getScoreLine = () => {
+    if (message) {
+        return `You: ${playerScore} | Bot: ${botScore}`
+    }
+
+    if (botHand.length === 0) {
+        return `You: ${playerScore} | Bot: ?`
+    }
+
+    // Bot's first card is hidden until the round ends, so calculate the score
+    // from only the visible (non-first) cards
+    const visibleBotScore = calculateScore(botHand.slice(1))
+
+    if (botStood && playerStood) {
+        return `You: ${playerScore} | Bot: ${visibleBotScore} + ? (calculating...)`
+    }
+
+    if (playerTurn) {
+        return `You: ${playerScore} | Bot: ${visibleBotScore} + ?`
+    }
+
+    return `You: ${playerScore} | Bot: ${visibleBotScore} + ? (bot thinking...)`
+}
+
+return (
+    <GameTable
+        botHand={botHand}
+        playerHand={playerHand}
+        playerTurn={playerTurn}
+        hideBotFirstCard={!message}
+        deckCount={deck.length}
+        status={message}
+        message={getScoreLine()}
+        controls={
+            <>
+                {!playerStood && (
+                    <>
+                        <Button className="w-72" variant="primary" onClick={handlePlayerHit}>
+                            Call for more
                         </Button>
-                    )}
-                </>
-            }
-        />
-        
-    )
+                        <Button className="w-32" variant="secondary" onClick={handlePlayerStand}>
+                            Stand
+                        </Button>
+                    </>
+                )}
+                {message && (
+                    <Button className="w-64" variant="primary" onClick={handleStartGame}>
+                        Start A New Game
+                    </Button>
+                )}
+            </>
+        }
+    />
+)
 }
 
 export default BlackJack
