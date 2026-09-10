@@ -1,20 +1,21 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { backCard } from "../constants"
 
-const Hand = ({ hand, hideFirstCard, position}) => {
+const Hand = ({ hand, hideFirstCard, position }) => {
     const flyFrom = position === 'top' ? 150 : -150
 
     return (
         <div className="hand-table">
             <AnimatePresence>
-                {hand.map(( card, i) => (
-                    <motion.img 
+                {hand.map((card, i) => (
+                    <motion.img
                         key={card.name + i}
                         layoutId={card.name + i}
-                        src={ i === 0 && hideFirstCard ? backCard : card.imgPath}
-                        initial={{ x: 0, y: flyFrom, opacity: 1}}
+                        src={i === 0 && hideFirstCard ? backCard : card.imgPath}
+                        initial={{ x: 0, y: flyFrom, opacity: 1 }}
                         animate={{ x: 0, y: 0, opacity: 1 }}
-                        transition={{ type: 'spring', stiffness: 450, damping: 50}}
+                        transition={{ type: 'spring', stiffness: 450, damping: 50 }}
+                        className="placement"
                         alt={card.name}
                     />
                 ))}
@@ -25,18 +26,19 @@ const Hand = ({ hand, hideFirstCard, position}) => {
 
 const DeckStack = ({ count }) => {
     const visualCards = Math.min(count, 5)
-    const stackWidth = 80 + (visualCards -1) * 16
+    const stackWidth = 80 + (visualCards - 1) * 16
 
     return (
-        <div className="placement" style={{ width: stackWidth, height: 140, position:"relative"}}>
-            {Array.from({ length: visualCards }).map(( _, i ) => (
+        <div className="placement" style={{ width: stackWidth, height: 140, position: "relative" }}>
+            {Array.from({ length: visualCards }).map((_, i) => (
                 <img
                     key={i}
                     src={backCard}
                     alt="deck"
+                    className="placement"
                     style={{
                         left: i * 32,
-                        zIndex: visualCards - i ,
+                        zIndex: visualCards - i,
                         position: "absolute",
                     }}
                 />
@@ -50,6 +52,7 @@ const GameTable = ({
     playerHand = [],
     hideBotFirstCard = false,
     deckCount = 0,
+    status,
     message,
     controls,
 }) => {
@@ -63,14 +66,14 @@ const GameTable = ({
                 </div>
 
                 <div className="placement">
-                    <Hand hand={playerHand} hideFirstCard={false} position="bottom"/>
+                    <Hand hand={playerHand} hideFirstCard={false} position="bottom" />
                 </div>
-
-                
             </div>
-            <div className="flex flex-col items-end gap-2 p-6 justify-end">
-                {controls}
+
+            <div className="flex flex-col items-start gap-2 p-6 justify-center">
+                {status && <h1 className="subtitle">{status}</h1>}
                 {message && <h1>{message}</h1>}
+                {controls}
             </div>
         </div>
     )
